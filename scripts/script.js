@@ -9,17 +9,10 @@ module.exports = async () => {
     const myBalanceEther = await web3.eth.getBalance(account);
     console.log(`my balance ether ${myBalanceEther}`);
 
-    // const depositing = await timelock({
-    //   from: account,
-    //   value: web3.utils.toWei("1.2"),
-    // });
-    // console.log(depositing);
-
-    // console.log(timelock.address);
     // await web3.eth.sendTransaction({
     //   from: account,
     //   to: timelock.address,
-    //   value: web3.utils.toWei("1"),
+    //   value: web3.utils.toWei("5"),
     // });
 
     let contractsBalance = await web3.eth.getBalance(timelock.address);
@@ -27,12 +20,15 @@ module.exports = async () => {
 
     const tx = await timelock.withdraw(
       "0x0000000000000000000000000000000000000000",
-      web3.utils.toWei("1")
+      web3.utils.toWei("40")
     );
     console.log(tx);
 
     contractsBalance = await web3.eth.getBalance(timelock.address);
     console.log(contractsBalance);
+
+    // const timeLeft = await timelock.getTimeLeft();
+    // console.log(timeLeft);
 
     //
   } catch (error) {

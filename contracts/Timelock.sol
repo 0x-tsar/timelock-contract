@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Timelock {
-    uint256 public constant duration = 15 minutes;
+    uint256 public constant duration = 4 minutes;
     uint256 public immutable end;
     address payable public immutable owner;
 
@@ -16,6 +16,10 @@ contract Timelock {
 
     function deposit(address _token, uint256 _amount) external {
         IERC20(_token).transferFrom(msg.sender, address(this), _amount);
+    }
+
+    function getTimeLeft() external view returns (uint256) {
+        return end - block.timestamp;
     }
 
     //receive some ether
