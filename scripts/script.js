@@ -22,8 +22,8 @@ module.exports = async () => {
     //   value: web3.utils.toWei("1"),
     // });
 
-    // let contractsBalance = await web3.eth.getBalance(timelock.address);
-    // console.log(contractsBalance);
+    let contractsBalance = await web3.eth.getBalance(timelock.address);
+    console.log(contractsBalance);
 
     const tx = await timelock.withdraw(
       "0x0000000000000000000000000000000000000000",
