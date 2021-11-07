@@ -13,10 +13,20 @@ contract Timelock is Ownable {
         owner = _owner;
     }
 
-
     function deposit(address _token, uint _amount) external{
         IERC20(_token).transferFrom(msg.sender, address(this), amount);
     }
 
-    function withdraw(uint256 amount) external onlyOwner {}
+    @dev //callback fn???
+    receive() external payable{}
+
+    function withdraw(address _token, uint256 _amount) external onlyOwner {
+        require(msg.sender == owner, 'only owner');
+        require(block.timestamp >= end, 'too early');
+        if(_token == address(0)){
+            owner.transfer(_amount);
+        }else{
+            IERC20(_token).transfer(owner, amount);
+        }
+    }
 }
