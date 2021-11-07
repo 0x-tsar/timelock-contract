@@ -17,12 +17,13 @@ contract Timelock is Ownable {
         IERC20(_token).transferFrom(msg.sender, address(this), amount);
     }
 
-    @dev //callback fn???
+    //receive some ether
     receive() external payable{}
 
     function withdraw(address _token, uint256 _amount) external onlyOwner {
         require(msg.sender == owner, 'only owner');
         require(block.timestamp >= end, 'too early');
+        //convention meaning _token == address(0) we want to retrieve ether
         if(_token == address(0)){
             owner.transfer(_amount);
         }else{
