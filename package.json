@@ -13,6 +13,7 @@
   "author": "Gustavo Fernandes",
   "license": "ISC",
   "dependencies": {
-    "@openzeppelin/contracts": "^4.3.2"
+    "@openzeppelin/contracts": "^4.3.2",
+    "@openzeppelin/test-helpers": "^0.5.15"
   }
 }

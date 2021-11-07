@@ -15,20 +15,20 @@ module.exports = async () => {
     //   value: web3.utils.toWei("5"),
     // });
 
-    let contractsBalance = await web3.eth.getBalance(timelock.address);
-    console.log(contractsBalance);
+    // let contractsBalance = await web3.eth.getBalance(timelock.address);
+    // console.log(contractsBalance);
 
-    const tx = await timelock.withdraw(
-      "0x0000000000000000000000000000000000000000",
-      web3.utils.toWei("40")
-    );
-    console.log(tx);
+    // const tx = await timelock.withdraw(
+    //   "0x0000000000000000000000000000000000000000",
+    //   web3.utils.toWei("40")
+    // );
+    // console.log(tx);
 
-    contractsBalance = await web3.eth.getBalance(timelock.address);
-    console.log(contractsBalance);
+    // contractsBalance = await web3.eth.getBalance(timelock.address);
+    // console.log(contractsBalance);
 
-    // const timeLeft = await timelock.getTimeLeft();
-    // console.log(timeLeft);
+    const timeLeft = await timelock.getTimeLeft();
+    console.log(parseInt(timeLeft));
 
     //
   } catch (error) {
